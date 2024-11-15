@@ -16,7 +16,7 @@
 </header>
 <main>
     <h2>Search for an event:</h2>
-    <form th:method="GET" th:action="@{/servlet/event}">
+    <form th:method="GET" th:action="@{/events}">
         <label for="searchByName">Search by event name:</label>
         <input type="text" name="searchName" id="searchByName">
         <br/>
@@ -26,7 +26,14 @@
         <br/>
         <input type="submit" value="Submit">
     </form>
-    <form th:method="POST" th:action="@{/servlet/event/booking}">
+
+   <div>
+       <div>
+           <a href="events/add-event" class="btn btn-block">Add Event</a>
+       </div>
+   </div>
+
+    <form>
         <h2>Choose an event:</h2>
         <div th:each="event : ${events}">
             <input type="radio" name="radio1" th:value="${event.name}">
@@ -34,7 +41,12 @@
                 Name : <th:block th:text="${event.name}"></th:block><br/>
                 Description : <th:block th:text="${event.description}"></th:block><br/>
                 Rating : <th:block th:text="${event.popularityScore}"></th:block><br/>
+                Location : <th:block th:text="${event.location.name}"></th:block><br/>
             </label><br/>
+            <form th:action="@{'/events/delete/{id}' (id=${event.id})}" th:method="delete" style="display:inline;">
+                <button type="submit">Delete Event</button>
+            </form>
+            <a th:href="@{'/events/edit-form/{id}' (id=${event.getId()})}">Edit Event</a>
         </div>
         <h2>Choose number of tickets:</h2>
         <input type="number" name="numTickets" min="1" max="10"><br/>
