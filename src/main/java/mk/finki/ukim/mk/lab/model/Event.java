@@ -4,11 +4,17 @@ import lombok.Data;
 
 @Data
 public class Event {
-    String name;
-    String description;
-    double popularityScore;
+    private String name;
+    private String description;
+    private double popularityScore;
+    private Long id;
+    private Location location;
 
-    public Event(String name, String description, double popularityScore) {
+
+    public Event(Location location, String name,
+                 String description, double popularityScore) {
+        this.id = (long)(Math.random()*1000);
+        this.location = location;
         this.name = name;
         this.description = description;
         this.popularityScore = popularityScore;
