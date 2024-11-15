@@ -2,6 +2,7 @@ package mk.finki.ukim.mk.lab.bootstrap;
 
 import jakarta.annotation.PostConstruct;
 import mk.finki.ukim.mk.lab.model.Event;
+import mk.finki.ukim.mk.lab.model.EventBooking;
 import mk.finki.ukim.mk.lab.model.Location;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.Random;
 public class DataHolder {
     public static List<Event> events=new ArrayList<Event>();
     public static List<Location> locations=new ArrayList<Location>();
+    public static List<EventBooking> bookedEvents = new ArrayList<>();
     @PostConstruct
     public void init()
     {
