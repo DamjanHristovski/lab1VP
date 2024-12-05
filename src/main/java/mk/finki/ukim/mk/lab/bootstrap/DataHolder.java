@@ -4,6 +4,9 @@ import jakarta.annotation.PostConstruct;
 import mk.finki.ukim.mk.lab.model.Event;
 import mk.finki.ukim.mk.lab.model.EventBooking;
 import mk.finki.ukim.mk.lab.model.Location;
+import mk.finki.ukim.mk.lab.repository.jpa.EventRepository;
+import mk.finki.ukim.mk.lab.repository.jpa.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,6 +15,15 @@ import java.util.Random;
 
 @Component
 public class DataHolder {
+
+    private final EventRepository eventRepository;
+    private final LocationRepository locationRepository;
+    @Autowired
+    public DataHolder(EventRepository eventRepository, LocationRepository locationRepository) {
+        this.eventRepository = eventRepository;
+        this.locationRepository = locationRepository;
+    }
+
     public static List<Event> events=new ArrayList<Event>();
     public static List<Location> locations=new ArrayList<Location>();
     public static List<EventBooking> bookedEvents = new ArrayList<>();
@@ -42,7 +54,8 @@ public class DataHolder {
         events.add(new Event(location1,"Gibonni","Koncert",3.6));
 
 
-
+        locationRepository.saveAll(locations);
+        eventRepository.saveAll(events);
     }
 
 }

@@ -79,6 +79,7 @@ public class EventController {
             if (eventService.getEventById(id).isPresent()){
                 List<Location>locations = locationService.findAll();
                 Event event = eventService.getEventById(id).get();
+                eventService.deleteEventById(id);
                 model.addAttribute("event", event);
                 model.addAttribute("locations", locations);
                 return "addEvent";

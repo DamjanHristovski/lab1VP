@@ -2,6 +2,7 @@ package mk.finki.ukim.mk.lab.service.Impl;
 
 import mk.finki.ukim.mk.lab.model.Location;
 import mk.finki.ukim.mk.lab.repository.InMemoryLocationRepository;
+import mk.finki.ukim.mk.lab.repository.jpa.LocationRepository;
 import mk.finki.ukim.mk.lab.service.LocationService;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,9 @@ import java.util.Optional;
 
 @Service
 public class LocationServiceImpl implements LocationService {
-    private final InMemoryLocationRepository locationRepository;
+    private final LocationRepository locationRepository;
 
-    public LocationServiceImpl(InMemoryLocationRepository locationRepository) {
+    public LocationServiceImpl(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
 
